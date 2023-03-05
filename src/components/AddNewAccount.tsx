@@ -4,7 +4,7 @@ import { PlusIcon } from "@heroicons/react/20/solid";
 
 const AddNewAccount = () => {
   return (
-    <li className='relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600'>
+    <li className='relative bg-white py-5 px-4'>
       <div className='text-center'>
         <svg
           className='mx-auto h-12 w-12 text-gray-400'

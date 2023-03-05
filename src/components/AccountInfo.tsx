@@ -1,12 +1,12 @@
-import React from "react";
 
-import { PaperClipIcon } from "@heroicons/react/20/solid";
 import {
   ArrowDownTrayIcon,
-  ArrowUpTrayIcon,
+  ArrowUpTrayIcon
 } from "@heroicons/react/24/outline";
 
 const AccountInfo = () => {
+
+
   return (
     <div className='overflow-hidden bg-white shadow sm:rounded-lg mx-4'>
       <div className='flex'>
