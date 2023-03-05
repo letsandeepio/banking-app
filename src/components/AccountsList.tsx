@@ -45,11 +45,7 @@ const AccountsList = () => {
               </p>
             </div>
           </div>
-          <div className='mt-1'>
-            <p className='text-sm text-gray-600 line-clamp-2'>
-              {account.description}
-            </p>
-          </div>
+          
         </li>
       ))}
       <AddNewAccount/>

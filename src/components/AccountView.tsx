@@ -10,7 +10,7 @@ const AccountView = () => {
             type='button'
             className='rounded-md bg-red-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 hover:border-red-500 focus-visible:outline focus-visible:outline-red-600'
           >
-            Delete Account
+            Delete
           </button>
         </div>
       </div>
