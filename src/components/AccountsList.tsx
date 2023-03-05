@@ -21,12 +21,12 @@ const AccountsList = () => {
   return (
     <ul
       role='list'
-      className='divide-y divide-gray-200 min-w-[384px] max-w-sm overflow-scroll flex flex-col h-full'
+      className='divide-y divide-gray-200 min-w-[384px] max-w-sm flex-1 overflow-y-auto min-h-0 border-r border-gray-200 px-2'
     >
       {accounts.map((account) => (
         <li
           key={account.id}
-          className='relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50'
+          className='relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50 '
         >
           <div className='flex justify-between space-x-3'>
             <div className='min-w-0 flex-1'>
