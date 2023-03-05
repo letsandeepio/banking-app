@@ -1,4 +1,5 @@
 import React from 'react'
+import AddNewAccount from './AddNewAccount';
 
 const accounts = [
   {
@@ -21,7 +22,7 @@ const AccountsList = () => {
   return (
     <ul
       role='list'
-      className='divide-y divide-gray-200 min-w-[384px] max-w-sm flex-1 overflow-y-auto min-h-0 border-r border-gray-200 px-2'
+      className='divide-y divide-gray-200 min-w-[384px] max-w-sm flex-1 overflow-y-auto min-h-0 border-r border-gray-200 px-2 pt-2'
     >
       {accounts.map((account) => (
         <li
@@ -51,6 +52,7 @@ const AccountsList = () => {
           </div>
         </li>
       ))}
+      <AddNewAccount/>
     </ul>
   );
 }
