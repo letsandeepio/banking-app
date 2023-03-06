@@ -35,7 +35,7 @@ const DepositContainer = ({ onSubmit }: DepositContainerProps) => {
       <div className='text-sm mb-8'>Please enter an amount to deposit</div>
       <AmountInput value={amount} onChange={setAmount} error={error} />
       <div className='mt-6'>
-        <Button label='Deposit' onClick={handleDeposit} />
+        <Button label='Deposit' onClick={handleDeposit} data-cy="submitDeposit"/>
       </div>
     </>
   );

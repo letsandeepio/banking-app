@@ -60,7 +60,11 @@ const WithdrawalContainer = ({ onSubmit }: WithdrawalContainerProps) => {
       <div className='text-sm mb-8'>Please enter an amount to withdraw.</div>
       <AmountInput value={amount} onChange={setAmount} error={error} />
       <div className='mt-6'>
-        <Button label='Withdraw' onClick={handleWithdrawal} />
+        <Button
+          label='Withdraw'
+          onClick={handleWithdrawal}
+          data-cy='submitWithdraw'
+        />
       </div>
     </>
   );

@@ -30,7 +30,10 @@ const AccountInfo = () => {
               Account Type: {account?.type === "current" ? "Current" : "Saving"}
             </p>
           </div>
-          <div className='flex-1 px-4 py-5 sm:px-6 text-4xl '>
+          <div
+            className='flex-1 px-4 py-5 sm:px-6 text-4xl '
+            data-cy='accountBalance'
+          >
             ${account?.balance}
           </div>
         </div>
@@ -42,6 +45,7 @@ const AccountInfo = () => {
               setTransactionMode("withdraw");
               setTransactionModalOpen(true);
             }}
+            data-cy='withdraw'
           >
             <ArrowUpTrayIcon className='h-4 w-4' />
             Withdraw
@@ -52,6 +56,7 @@ const AccountInfo = () => {
               setTransactionMode("deposit");
               setTransactionModalOpen(true);
             }}
+            data-cy='deposit'
           >
             <ArrowDownTrayIcon className='h-4 w-4' />
             Deposit
