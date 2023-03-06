@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { AccountType } from '../zustand/bankStore';
+import { AccountType } from "../zustand/bankStore";
 
-export const accountTypes: {
+export interface AccountSelectionType {
   name: string;
   description: string;
   type: AccountType;
-}[] = [
+}
+
+export const accountTypes: AccountSelectionType[] = [
   {
     name: "Current",
     description: "Suitable for day-to-day transactions",
@@ -19,13 +21,16 @@ export const accountTypes: {
   },
 ];
 
-export default function AccountTypeSelection() {
-  const [selected, setSelected] = useState(accountTypes[0]);
+interface AccountTypeSelectionProps {
+  value: AccountSelectionType;
+  onChange: (newSelection: AccountSelectionType) => void;
+}
 
+export default function AccountTypeSelection({ value, onChange }: AccountTypeSelectionProps) {
   return (
     <div className='w-full'>
       <div className='w-full sm:max-w-xs'>
-        <RadioGroup value={selected} onChange={setSelected}>
+        <RadioGroup value={value} onChange={onChange}>
           <RadioGroup.Label className='sr-only'>Server size</RadioGroup.Label>
           <div className='space-y-2'>
             {accountTypes.map((accountType) => (
@@ -84,7 +89,7 @@ export default function AccountTypeSelection() {
   );
 }
 
-function CheckIcon(props: any) {
+const CheckIcon = (props: any) => {
   return (
     <svg viewBox='0 0 24 24' fill='none' {...props}>
       <circle cx={12} cy={12} r={12} fill='#fff' opacity='0.2' />
@@ -97,4 +102,4 @@ function CheckIcon(props: any) {
       />
     </svg>
   );
-}
+};

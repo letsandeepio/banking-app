@@ -2,7 +2,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import useAppStore from "../zustand/appStore";
 import useBankStore from "../zustand/bankStore";
-import AccountTypeSelection, { accountTypes } from "./AccountTypeSelection";
+import AccountTypeSelection, {
+  AccountSelectionType,
+  accountTypes
+} from "./AccountTypeSelection";
 
 interface FormError {
   accountName: boolean;
@@ -38,8 +41,6 @@ const NewAccountContainer = () => {
       formValidated = false;
     }
 
-    console.log(Number(formState.accountStartingBalance));
-
     if (Number(formState.accountStartingBalance) < 100) {
       setFormErrors((prev) => ({
         ...prev,
@@ -62,7 +63,9 @@ const NewAccountContainer = () => {
     }
   };
 
-  console.log(formErrors);
+  const accountTypeSelectionHandler = (newSelection: AccountSelectionType) => {
+    setFormState({ ...formState, accountType: newSelection });
+  };
 
   return (
     <>
@@ -114,7 +117,10 @@ const NewAccountContainer = () => {
             Account Type
           </label>
           <div className='mt-2 sm:col-span-2 sm:mt-0'>
-            <AccountTypeSelection />
+            <AccountTypeSelection
+              value={formState.accountType}
+              onChange={accountTypeSelectionHandler}
+            />
           </div>
         </div>
 
