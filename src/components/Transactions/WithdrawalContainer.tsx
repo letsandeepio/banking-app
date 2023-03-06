@@ -21,31 +21,38 @@ const WithdrawalContainer = ({ onSubmit }: WithdrawalContainerProps) => {
     (account) => account.id === currentlySelectAccount
   );
 
-
   const handleWithdrawal = () => {
-
     if (!account) return;
 
-    const newBalance = account?.balance - Number(amount);
+
+    const parsedAmount = Number(amount)
+    const newBalance = account?.balance - parsedAmount;
+    const availableBalanceToWithdraw = account.balance * 0.9;
 
     setError(undefined);
 
-    console.log("Amount to withdraw", amount)
-    console.log("Account balance", account?.balance);
-    console.log("New Balance" , newBalance);
+    // console.log("Amount to withdraw", amount)
+    // console.log("Account balance", account?.balance);
+    // console.log("New Balance" , newBalance);
 
+    if (parsedAmount <= 0) {
+      setError("Withdrawal amount must be greater than 0.");
+      return;
+    }
 
     if (newBalance < 100) {
       setError("Account balance cannot be less than $100.");
       return;
     }
 
-    if (Number(amount) > account.balance * 0.9) {
-      setError("Withdrawal limit is exceeded");
+    if (parsedAmount > availableBalanceToWithdraw) {
+      setError(
+        `Withdrawal limit is exceeded. Available balance to withdraw: $${availableBalanceToWithdraw}`
+      );
       return;
     }
 
-    onSubmit(Number(amount));
+    onSubmit(parsedAmount);
   };
 
   return (

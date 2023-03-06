@@ -4,7 +4,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import useAppStore from "../../zustand/appStore";
 import DepositContainer from "../Transactions/DepositContainer";
 import WithdrawalContainer from "../Transactions/WithdrawalContainer";
-import { toast } from 'sonner';
+import { toast } from "sonner";
+import useBankStore from "../../zustand/bankStore";
 
 interface TransactionModalProps {
   open: boolean;
@@ -13,17 +14,27 @@ interface TransactionModalProps {
 
 const TransactionModal = ({ open, setOpen }: TransactionModalProps) => {
   const transactionMode = useAppStore((state) => state.transactionMode);
+  const currentlySelectAccount = useAppStore(
+    (state) => state.currentlySelectedAccount
+  );
 
+  const transact = useBankStore((state) => state.transact);
 
   const handleDeposit = (amount: number) => {
-    toast.success(`Deposit of amount $${amount} processed.`)
+    if (currentlySelectAccount) {
+      transact("deposit", currentlySelectAccount, amount);
+      toast.success(`Deposit of amount $${amount} processed.`);
+    }
     setOpen(false);
-  }
+  };
 
-   const handleWithdrawal = (amount: number) => {
-     toast.success(`Withdrawal of amount $${amount} processed.`);
-     setOpen(false);
-   };
+  const handleWithdrawal = (amount: number) => {
+    if (currentlySelectAccount) {
+      transact("withdraw", currentlySelectAccount, amount);
+      toast.success(`Withdrawal of amount $${amount} processed.`);
+    }
+    setOpen(false);
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>

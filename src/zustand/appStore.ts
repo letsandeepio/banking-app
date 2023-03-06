@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 
 type Mode = 'new' | 'account';
-type TransactionMode = 'withdraw' | 'deposit';
+export type TransactionMode = 'withdraw' | 'deposit';
 
 interface AppStore {
   currentlySelectedAccount?: string;

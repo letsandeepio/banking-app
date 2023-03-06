@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { v4 as uuidv4 } from "uuid";
+import { TransactionMode } from "./appStore";
 
 export type AccountType = "current" | "saving";
 interface Account {
@@ -18,8 +19,7 @@ interface BankStore {
   accounts: Account[];
   deleteAccount: (byId: string) => void;
   createAccount: (account: AccountInput) => string;
-  deposit?: (byId: string, amount: number) => void;
-  withdraw?: (byId: string, amount: number) => void;
+  transact: (type: TransactionMode, byId: string, amount: number) => void;
 }
 
 const useBankStore = create<BankStore>()(
@@ -47,6 +47,30 @@ const useBankStore = create<BankStore>()(
           };
         });
         return id;
+      },
+      transact: (type: TransactionMode, byId: string, amount: number) => {
+        set((state) => {
+          const accountIndex = state.accounts.findIndex(
+            (account) => account.id === byId
+          );
+          const account = state.accounts[accountIndex];
+
+          const newBalance =
+            type === "deposit"
+              ? account.balance + amount
+              : account.balance - amount;
+
+          const updatedAccounts = [
+            ...state.accounts.slice(0, accountIndex),
+            { ...account, balance: newBalance },
+            ...state.accounts.slice(accountIndex + 1),
+          ] as Account[];
+
+          return {
+            ...state,
+            accounts: updatedAccounts,
+          };
+        });
       },
     }),
     { name: "bank-store" }
