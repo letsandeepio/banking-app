@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
+import { AccountType } from "../zustand/store";
 
-export const accountTypes = [
+export const accountTypes: {
+  name: string;
+  description: string;
+  type: AccountType;
+}[] = [
   {
     name: "Current",
     description: "Suitable for day-to-day transactions",
@@ -10,11 +15,11 @@ export const accountTypes = [
   {
     name: "Savings",
     description: "Suitable for long term savings",
-    type: "saving"
+    type: "saving",
   },
 ];
 
-export default function AccountType() {
+export default function AccountTypeSelection() {
   const [selected, setSelected] = useState(accountTypes[0]);
 
   return (

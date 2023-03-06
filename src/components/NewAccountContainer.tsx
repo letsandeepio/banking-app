@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { toast } from 'sonner';
-import AccountType, { accountTypes } from "./AccountType";
+import { toast } from "sonner";
+import useAppStore from "../zustand/store";
+import AccountTypeSelection, { accountTypes } from "./AccountTypeSelection";
 
 interface FormError {
   accountName: boolean;
@@ -13,6 +14,8 @@ const initialFormErrors = {
 };
 
 const NewAccountContainer = () => {
+  const { createAccount } = useAppStore();
+
   const [formState, setFormState] = useState({
     accountName: "New Account",
     accountType: accountTypes[0],
@@ -21,11 +24,10 @@ const NewAccountContainer = () => {
 
   const [formErrors, setFormErrors] = useState<FormError>(initialFormErrors);
 
-  const createAccount = () => {
+  const validateForm = () => {
     let formValidated = true;
 
     setFormErrors(initialFormErrors);
-
     if (!formState.accountName) {
       setFormErrors((prev) => ({
         ...prev,
@@ -45,7 +47,12 @@ const NewAccountContainer = () => {
     }
 
     if (formValidated) {
-      toast.success("New account created")
+      createAccount({
+        name: formState.accountName,
+        type: formState.accountType.type,
+        balance: Number(formState.accountStartingBalance),
+      });
+      toast.success("New account created");
     } else {
       toast.error("Unable to to create new account");
     }
@@ -103,7 +110,7 @@ const NewAccountContainer = () => {
             Account Type
           </label>
           <div className='mt-2 sm:col-span-2 sm:mt-0'>
-            <AccountType />
+            <AccountTypeSelection />
           </div>
         </div>
 
@@ -139,7 +146,7 @@ const NewAccountContainer = () => {
 
         <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
           <div className='mt-2 sm:col-span-3 sm:mt-0 flex justify-end'>
-            <button onClick={createAccount}>Create Account</button>
+            <button onClick={validateForm}>Create Account</button>
           </div>
         </div>
       </div>

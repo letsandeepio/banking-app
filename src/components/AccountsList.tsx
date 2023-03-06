@@ -1,8 +1,11 @@
+import useAppStore from '../zustand/store';
 import AddNewAccountPlaceholder from "./AddNewAccountPlaceholder";
 
-const accounts: any[] = [];
 
 const AccountsList = () => {
+
+  const accounts = useAppStore((state) => state.accounts);
+
   return (
     <ul
       role='list'
@@ -29,14 +32,9 @@ const AccountsList = () => {
               </p>
             </div>
           </div>
-          <div className='mt-1'>
-            <p className='text-sm text-gray-600 line-clamp-2'>
-              {account.description}
-            </p>
-          </div>
         </li>
       ))}
-      <AddNewAccountPlaceholder />
+      {accounts.length === 0 && <AddNewAccountPlaceholder />}
     </ul>
   );
 };
