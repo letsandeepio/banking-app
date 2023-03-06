@@ -17,7 +17,7 @@ const SearchPanel = () => {
           <input
             id='search-field'
             className='block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 focus:border-transparent focus:outline-none focus:ring-0 focus:placeholder:text-gray-400 sm:text-sm'
-            placeholder='Search'
+            placeholder='Search by Account Name or Account Type'
             type='search'
             name='search'
             value={searchTerm}
