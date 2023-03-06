@@ -1,9 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { v4 as uuidv4 } from "uuid";
+
 
 export type AccountType = "current" | "saving";
 interface Account {
-  id: number;
+  id: string;
   name: string;
   balance: number;
   type: AccountType;
@@ -16,7 +18,7 @@ type AccountInput = Pick<Account, AccountKeys>;
 interface BankStore {
   accounts: Account[];
   deleteAccount?: (byId: number) => void;
-  createAccount: (account: AccountInput) => number;
+  createAccount: (account: AccountInput) => string;
   deposit?: (byId: number, amount: number) => void;
   withdraw?: (byId: number, amount: number) => void;
 }
@@ -26,9 +28,8 @@ const useBankStore = create<BankStore>()(
     (set) => ({
       accounts: [],
       createAccount: (account: AccountInput) => {
-        let id = 0;
+        let id = uuidv4();
         set((state) => {
-          id = state.accounts.length + 1;
           return {
             accounts: [
               ...state.accounts,

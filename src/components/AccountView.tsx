@@ -1,17 +1,24 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import useAppStore from "../zustand/appStore";
+import useBankStore from "../zustand/bankStore";
 import AccountInfo from "./AccountInfo";
-import NewAccountContainer from './NewAccountContainer';
+import NewAccountContainer from "./NewAccountContainer";
 
 const AccountView = () => {
-  const {setMode, viewMode} = useAppStore();
-
+  const { setMode, viewMode, currentlySelectedAccount } = useAppStore();
+  const accounts = useBankStore((state) => state.accounts);
   return (
     <div className='pt-4 w-full bg-gray-100'>
-      {viewMode === "begin" && (
+      {viewMode === "account" && accounts.length === 0 && (
         <div className='p-4 flex h-full w-full justify-center align-middle items-center'>
           Welcome to the Banking App, click on + New Account to begin.
+        </div>
+      )}
+
+      {viewMode === "account" && !currentlySelectedAccount && (
+        <div className='p-4 flex h-full w-full justify-center align-middle items-center'>
+          Welcome to the Banking App, select a account on the right to begin.
         </div>
       )}
 
@@ -20,6 +27,7 @@ const AccountView = () => {
           <NewAccountContainer />
         </div>
       )}
+
       {viewMode === "account" && (
         <>
           <div className='pb-4 pr-4 w-full flex justify-end gap-2'>
