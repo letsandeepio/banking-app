@@ -1,5 +1,5 @@
 import { PlusIcon } from "@heroicons/react/20/solid";
-import useAppStore from "../zustand/store";
+import useAppStore from "../zustand/appStore";
 
 const AddNewAccountPlaceholder = () => {
   const setMode = useAppStore((state) => state.setMode);

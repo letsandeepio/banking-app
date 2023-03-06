@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
-import useAppStore from "../zustand/store";
+import useBankStore from '../zustand/bankStore';
 import AccountTypeSelection, { accountTypes } from "./AccountTypeSelection";
 
 interface FormError {
@@ -14,7 +14,7 @@ const initialFormErrors = {
 };
 
 const NewAccountContainer = () => {
-  const { createAccount } = useAppStore();
+  const { createAccount } = useBankStore();
 
   const [formState, setFormState] = useState({
     accountName: "New Account",

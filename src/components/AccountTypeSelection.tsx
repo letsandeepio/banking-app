@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { AccountType } from "../zustand/store";
+import { AccountType } from '../zustand/bankStore';
 
 export const accountTypes: {
   name: string;
