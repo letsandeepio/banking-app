@@ -20,6 +20,11 @@ const TransactionModal = ({ open, setOpen }: TransactionModalProps) => {
     setOpen(false);
   }
 
+   const handleWithdrawal = (amount: number) => {
+     toast.success(`Withdrawal of amount $${amount} processed.`);
+     setOpen(false);
+   };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -73,7 +78,7 @@ const TransactionModal = ({ open, setOpen }: TransactionModalProps) => {
                         <DepositContainer onSubmit={handleDeposit} />
                       )}
                       {transactionMode === "withdraw" && (
-                        <WithdrawalContainer />
+                        <WithdrawalContainer onSubmit={handleWithdrawal} />
                       )}
                     </div>
                   </div>
