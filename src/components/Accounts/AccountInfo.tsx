@@ -21,7 +21,7 @@ const AccountInfo = () => {
   return (
     <>
       <div className='overflow-hidden bg-white shadow sm:rounded-lg mx-4'>
-        <div className='flex'>
+        <div className='flex flex-col'>
           <div className='px-4 py-5 sm:px-6 flex-1'>
             <h2 className='text-lg font-semibold leading-6 text-gray-900'>
               {account?.name}
@@ -30,7 +30,7 @@ const AccountInfo = () => {
               Account Type: {account?.type}
             </p>
           </div>
-          <div className='flex-1 px-4 py-5 sm:px-6 text-4xl text-right'>
+          <div className='flex-1 px-4 py-5 sm:px-6 text-4xl '>
             ${account?.balance}
           </div>
         </div>

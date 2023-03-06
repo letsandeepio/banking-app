@@ -31,6 +31,7 @@ const NewAccountContainer = () => {
 
   const validateForm = () => {
     let formValidated = true;
+    const parsedBalance = Number(formState.accountStartingBalance)
 
     setFormErrors(initialFormErrors);
     if (!formState.accountName) {
@@ -41,7 +42,7 @@ const NewAccountContainer = () => {
       formValidated = false;
     }
 
-    if (Number(formState.accountStartingBalance) < 100) {
+    if (parsedBalance < 100 || parsedBalance > 10000) {
       setFormErrors((prev) => ({
         ...prev,
         accountStartingBalance: true,
@@ -53,7 +54,7 @@ const NewAccountContainer = () => {
       const newAccountCreated = createAccount({
         name: formState.accountName,
         type: formState.accountType.type,
-        balance: Number(formState.accountStartingBalance),
+        balance: parsedBalance,
       });
       toast.success("New account created");
       setMode("account");
@@ -102,7 +103,7 @@ const NewAccountContainer = () => {
             />
 
             {formErrors.accountName && (
-              <div className='text-xs text-red-400 py-2'>
+              <div className='text-xs text-red-500 py-2'>
                 Account name is required
               </div>
             )}
@@ -147,8 +148,8 @@ const NewAccountContainer = () => {
               className='block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
             />
             {formErrors.accountStartingBalance && (
-              <div className='text-xs text-red-400 py-2'>
-                Starting balance must be greated than $100
+              <div className='text-xs text-red-500 py-2'>
+                Starting balance must be less than $10000 & greater than $100
               </div>
             )}
           </div>

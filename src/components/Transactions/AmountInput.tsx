@@ -31,14 +31,15 @@ const AmountInput = ({ value, onChange, error }: AmountInputProps) => {
           onChange={(e) => onChange(e.target.value)}
           value={value}
         />
-        <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
-          {error && (
+
+        {error && (
+          <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
             <ExclamationCircleIcon
               className='h-5 w-5 text-red-500'
               aria-hidden='true'
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
       <p className='mt-2 text-sm text-red-600' id='amount-error'>
         {error && error}
