@@ -27,7 +27,7 @@ describe("transactions", () => {
     cy.get('[data-cy="accountBalance"]').should("have.text", "$900");
   });
 
-  it.only("shouldn't allow the user to deposit more than $10000 into bank account in single transaction", () => {
+  it("shouldn't allow the user to deposit more than $10000 into bank account in single transaction", () => {
     cy.get('[data-cy="deposit"]').click();
     cy.get("#amount").clear().type("10001");
 

@@ -1,16 +1,21 @@
 import { defineConfig } from "cypress";
-import task from "@cypress/code-coverage/task"
+
+import task from "@cypress/code-coverage/task";
+
+console.log(task);
 
 export default defineConfig({
   env: {
     codeCoverage: {
-        exclude: "cypress/**/*.*",
+      exclude: "cypress/**/*.*",
     },
   },
   e2e: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: "http://localhost:3000",
     setupNodeEvents(on, config) {
       // implement node event listeners here
+       task(on, config);
+        return config;
     },
   },
   component: {
@@ -21,6 +26,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       task(on, config);
       return config;
-  },
+    },
   },
 });
