@@ -2,9 +2,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import useAppStore from "../../zustand/appStore";
 import useBankStore from "../../zustand/bankStore";
+import Button from "../Layout/Button";
 import AccountTypeSelection, {
   AccountSelectionType,
-  accountTypes
+  accountTypes,
 } from "./AccountTypeSelection";
 
 interface FormError {
@@ -31,7 +32,7 @@ const NewAccountContainer = () => {
 
   const validateForm = () => {
     let formValidated = true;
-    const parsedBalance = Number(formState.accountStartingBalance)
+    const parsedBalance = Number(formState.accountStartingBalance);
 
     setFormErrors(initialFormErrors);
     if (!formState.accountName) {
@@ -156,8 +157,11 @@ const NewAccountContainer = () => {
         </div>
 
         <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
-          <div className='mt-2 sm:col-span-3 sm:mt-0 flex justify-end'>
-            <button onClick={validateForm}>Create Account</button>
+          <div className='mt-2 sm:col-span-3 sm:mt-0 flex justify-end gap-2'>
+            <button className='text-sm' onClick={() => setMode("account")}>
+              Cancel
+            </button>
+            <Button onClick={validateForm} label='Create Account' />
           </div>
         </div>
       </div>

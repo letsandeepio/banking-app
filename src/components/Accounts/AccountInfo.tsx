@@ -27,7 +27,7 @@ const AccountInfo = () => {
               {account?.name}
             </h2>
             <p className='mt-1 max-w-2xl text-sm text-gray-500'>
-              Account Type: {account?.type}
+              Account Type: {account?.type === "current" ? "Current" : "Saving"}
             </p>
           </div>
           <div className='flex-1 px-4 py-5 sm:px-6 text-4xl '>

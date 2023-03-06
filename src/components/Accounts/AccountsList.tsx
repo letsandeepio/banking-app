@@ -27,7 +27,7 @@ const AccountsList = () => {
                 <p className='truncate text-sm font-medium text-gray-900'>
                   {account.name}
                 </p>
-                <p className='truncate text-sm text-gray-500'>{account.type}</p>
+                <p className='truncate text-sm text-gray-500'>{account.type === "current" ? "Current" : "Saving"}</p>
               </a>
             </div>
             <div className='flex-shrink-0 whitespace-nowrap text-sm text-gray-500'>
