@@ -2,6 +2,9 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import useAppStore from "../../zustand/appStore";
+import DepositContainer from "../Transactions/DepositContainer";
+import WithdrawalContainer from "../Transactions/WithdrawalContainer";
+import { toast } from 'sonner';
 
 interface TransactionModalProps {
   open: boolean;
@@ -10,6 +13,12 @@ interface TransactionModalProps {
 
 const TransactionModal = ({ open, setOpen }: TransactionModalProps) => {
   const transactionMode = useAppStore((state) => state.transactionMode);
+
+
+  const handleDeposit = (amount: number) => {
+    toast.success(`Deposit of amount $${amount} processed.`)
+    setOpen(false);
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -60,7 +69,12 @@ const TransactionModal = ({ open, setOpen }: TransactionModalProps) => {
                       </div>
                     </div>
                     <div className='relative mt-6 flex-1 px-4 sm:px-6'>
-                      {/* Your content */}
+                      {transactionMode === "deposit" && (
+                        <DepositContainer onSubmit={handleDeposit} />
+                      )}
+                      {transactionMode === "withdraw" && (
+                        <WithdrawalContainer />
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>
