@@ -1,5 +1,5 @@
-import { navigation } from '../utils/navigation';
-import { classNames } from '../App';
+import { navigation } from '../../utils/navigation';
+import { classNames } from '../../App';
 
 const DesktopSideBar = () => {
   return <div className='flex min-h-0 flex-1 flex-col bg-gray-800'>

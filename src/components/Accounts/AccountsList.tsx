@@ -1,6 +1,6 @@
-import useAppStore from "../zustand/appStore";
-import useBankStore from "../zustand/bankStore";
-import AddNewAccountPlaceholder from "./AddNewAccountPlaceholder";
+import useAppStore from "../../zustand/appStore";
+import useBankStore from "../../zustand/bankStore";
+import AddNewAccountPlaceholder from "../NewAccount/AddNewAccountPlaceholder";
 
 const AccountsList = () => {
   const accounts = useBankStore((state) => state.accounts);

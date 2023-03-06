@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { BellIcon } from "@heroicons/react/24/outline";
-import { userNavigation } from '../utils/navigation';
-import { classNames } from '../App';
+import { userNavigation } from '../../utils/navigation';
+import { classNames } from '../../App';
 
 const NotificationsProfile = ()=> {
   return <div className='ml-4 flex items-center lg:ml-6'>

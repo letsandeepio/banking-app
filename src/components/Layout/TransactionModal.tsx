@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import useAppStore from "../zustand/appStore";
+import useAppStore from "../../zustand/appStore";
 
 interface TransactionModalProps {
   open: boolean;

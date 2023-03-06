@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import useAppStore from "../zustand/appStore";
-import useBankStore from "../zustand/bankStore";
+import useAppStore from "../../zustand/appStore";
+import useBankStore from "../../zustand/bankStore";
 import AccountTypeSelection, {
   AccountSelectionType,
   accountTypes

@@ -3,9 +3,9 @@ import {
   ArrowUpTrayIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import useAppStore from "../zustand/appStore";
-import useBankStore from "../zustand/bankStore";
-import TransactionModal from "./TransactionModal";
+import useAppStore from "../../zustand/appStore";
+import useBankStore from "../../zustand/bankStore";
+import TransactionModal from "../Layout/TransactionModal";
 
 const AccountInfo = () => {
   const [transactionModalOpen, setTransactionModalOpen] = useState(false);

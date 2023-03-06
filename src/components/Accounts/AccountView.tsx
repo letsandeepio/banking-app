@@ -1,11 +1,11 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { toast } from "sonner";
-import useAppStore from "../zustand/appStore";
-import useBankStore from "../zustand/bankStore";
+import useAppStore from "../../zustand/appStore";
+import useBankStore from "../../zustand/bankStore";
 import AccountInfo from "./AccountInfo";
-import DeleteAccountModal from "./DeleteAccountModal";
-import NewAccountContainer from "./NewAccountContainer";
+import DeleteAccountModal from "../Layout/DeleteAccountModal";
+import NewAccountContainer from "../NewAccount/NewAccountContainer";
 
 const AccountView = () => {
   const {

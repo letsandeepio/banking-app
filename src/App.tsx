@@ -2,10 +2,10 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { navigation } from "./utils/navigation";
-import  DesktopSideBar from "./components/DesktopSideBar";
-import MainContainer from "./components/MainContainer";
-import NotificationsProfile from './components/NotificationsProfile';
-import SearchPanel from './components/SearchPanel';
+import  DesktopSideBar from "./components/Layout/DesktopSideBar";
+import MainContainer from "./components/Layout/MainContainer";
+import NotificationsProfile from './components/Layout/NotificationsProfile';
+import SearchPanel from './components/Layout/SearchPanel';
 import { Toaster } from "sonner";
 
 export function classNames(...classes: string[]) {

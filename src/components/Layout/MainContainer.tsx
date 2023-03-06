@@ -1,6 +1,6 @@
 import React from 'react'
-import AccountsList from './AccountsList';
-import AccountView from './AccountView';
+import AccountsList from '../Accounts/AccountsList';
+import AccountView from '../Accounts/AccountView';
 
 const MainContainer = () => {
   return (
