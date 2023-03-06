@@ -1,22 +1,6 @@
-import React from 'react'
-import AddNewAccount from './AddNewAccount';
+import AddNewAccountPlaceholder from "./AddNewAccountPlaceholder";
 
-const accounts = [
-  {
-    id: 1,
-    type: "Savings",
-    name: "Retirement",
-    amount: "100",
-    description: "Accounts for long-term requirement savings",
-  },
-  {
-    id: 2,
-    type: "Current",
-    name: "Daily Expense",
-    amount: "100",
-    description: "Account for day-to-day expenses",
-  },
-];
+const accounts: any[] = [];
 
 const AccountsList = () => {
   return (
@@ -45,12 +29,16 @@ const AccountsList = () => {
               </p>
             </div>
           </div>
-          
+          <div className='mt-1'>
+            <p className='text-sm text-gray-600 line-clamp-2'>
+              {account.description}
+            </p>
+          </div>
         </li>
       ))}
-      <AddNewAccount/>
+      <AddNewAccountPlaceholder />
     </ul>
   );
-}
+};
 
-export default AccountsList
+export default AccountsList;

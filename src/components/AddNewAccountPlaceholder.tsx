@@ -1,8 +1,9 @@
-import React from 'react'
 import { PlusIcon } from "@heroicons/react/20/solid";
+import useAppStore from "../zustand/store";
 
+const AddNewAccountPlaceholder = () => {
+  const setMode = useAppStore((state) => state.setMode);
 
-const AddNewAccount = () => {
   return (
     <li className='relative bg-white py-5 px-4'>
       <div className='text-center'>
@@ -31,6 +32,7 @@ const AddNewAccount = () => {
           <button
             type='button'
             className='inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            onClick={() => setMode("new")}
           >
             <PlusIcon className='-ml-0.5 mr-1.5 h-5 w-5' aria-hidden='true' />
             New Account
@@ -39,6 +41,6 @@ const AddNewAccount = () => {
       </div>
     </li>
   );
-}
+};
 
-export default AddNewAccount
+export default AddNewAccountPlaceholder;

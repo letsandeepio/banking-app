@@ -6,6 +6,7 @@ import  DesktopSideBar from "./components/DesktopSideBar";
 import MainContainer from "./components/MainContainer";
 import NotificationsProfile from './components/NotificationsProfile';
 import SearchPanel from './components/SearchPanel';
+import { Toaster } from "sonner";
 
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -134,6 +135,7 @@ export default function App() {
           <MainContainer />
         </div>
       </div>
+      <Toaster richColors />
     </>
   );
 }
