@@ -19,6 +19,7 @@ const AccountsList = () => {
     <ul
       role='list'
       className='divide-y divide-gray-200 min-w-[384px] max-w-sm flex-1 overflow-y-auto min-h-0 border-r border-gray-200 px-2 pt-2'
+      data-cy="accountList"
     >
       {filteredAccounts.map((account) => (
         <li

@@ -60,7 +60,8 @@ const DeleteAccountModal = ({ open, setOpen, onDelete }: DeleteAccountModalProps
                     <div className='mt-2'>
                       <p className='text-sm text-gray-500'>
                         Are you sure you want to delete your account? All of
-                        your data will be permanently removed. This action cannot be undone.
+                        your data will be permanently removed. This action
+                        cannot be undone.
                       </p>
                     </div>
                   </div>
@@ -70,6 +71,7 @@ const DeleteAccountModal = ({ open, setOpen, onDelete }: DeleteAccountModalProps
                     type='button'
                     className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
                     onClick={onDelete}
+                    data-cy='deleteAccountConfirm'
                   >
                     Delete
                   </button>

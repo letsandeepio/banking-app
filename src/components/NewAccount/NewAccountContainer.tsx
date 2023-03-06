@@ -128,7 +128,7 @@ const NewAccountContainer = () => {
 
         <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
           <label
-            htmlFor='last-name'
+            htmlFor='starting-balance'
             className='block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5'
           >
             Starting Balance
@@ -136,9 +136,8 @@ const NewAccountContainer = () => {
           <div className='mt-2 sm:col-span-2 sm:mt-0'>
             <input
               type='number'
-              name='last-name'
-              id='last-name'
-              autoComplete='family-name'
+              name='starting-balance'
+              id='starting-balance'
               value={formState.accountStartingBalance}
               onChange={(e) =>
                 setFormState((state) => ({
@@ -161,7 +160,7 @@ const NewAccountContainer = () => {
             <button className='text-sm' onClick={() => setMode("account")}>
               Cancel
             </button>
-            <Button onClick={validateForm} label='Create Account' />
+            <Button onClick={validateForm} label='Create Account' data-cy="createAccount"/>
           </div>
         </div>
       </div>
