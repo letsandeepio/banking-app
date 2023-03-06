@@ -1,13 +1,35 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import { useState } from "react";
+import { toast } from "sonner";
 import useAppStore from "../zustand/appStore";
 import useBankStore from "../zustand/bankStore";
 import AccountInfo from "./AccountInfo";
+import DeleteAccountModal from "./DeleteAccountModal";
 import NewAccountContainer from "./NewAccountContainer";
 
 const AccountView = () => {
-  const { setMode, viewMode, currentlySelectedAccount } = useAppStore();
+  const {
+    setMode,
+    viewMode,
+    currentlySelectedAccount,
+    setCurrentlySelectedAccount,
+  } = useAppStore();
+
+  const { deleteAccount } = useBankStore();
+  
   const accounts = useBankStore((state) => state.accounts);
+
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const deleteHandler = () => {
+    if (currentlySelectedAccount) {
+      deleteAccount(currentlySelectedAccount);
+      setCurrentlySelectedAccount(undefined);
+    }
+    setDeleteModalOpen(false);
+    toast.success("Account have been removed.");
+  };
+
   return (
     <div className='pt-4 w-full bg-gray-100'>
       {viewMode === "account" && accounts.length === 0 && (
@@ -18,7 +40,7 @@ const AccountView = () => {
 
       {viewMode === "account" && !currentlySelectedAccount && (
         <div className='p-4 flex h-full w-full justify-center align-middle items-center'>
-          Welcome to the Banking App, select a account on the right to begin.
+          Please select a account on the right to view account information.
         </div>
       )}
 
@@ -48,12 +70,18 @@ const AccountView = () => {
               <button
                 type='button'
                 className='rounded-md bg-red-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 hover:border-red-500 focus-visible:outline focus-visible:outline-red-600'
+                onClick={() => setDeleteModalOpen(true)}
               >
                 Delete
               </button>
             </div>
           </div>
           <AccountInfo />
+          <DeleteAccountModal
+            open={deleteModalOpen}
+            setOpen={setDeleteModalOpen}
+            onDelete={deleteHandler}
+          />
         </>
       )}
     </div>

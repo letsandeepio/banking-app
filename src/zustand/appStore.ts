@@ -2,22 +2,22 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 
-type Mode = 'new' | 'account' | 'begin';
+type Mode = 'new' | 'account';
 
 interface AppStore {
   currentlySelectedAccount?: string;
   viewMode: Mode;
   setMode: (newMode: Mode) => void;
-  setCurrentlySelectedAccount: (newlySelectedAccount: string) => void;
+  setCurrentlySelectedAccount: (newlySelectedAccount?: string) => void;
 }
 
 const useAppStore = create<AppStore>()(
   persist(
     (set) => ({
       setMode: (mode: Mode) => set((state) => ({ viewMode: mode })),
-      setCurrentlySelectedAccount: (newlySelectedAccount: string) =>
+      setCurrentlySelectedAccount: (newlySelectedAccount?: string) =>
         set((state) => ({ currentlySelectedAccount: newlySelectedAccount })),
-      viewMode: "account",
+      viewMode: 'account',
     }),
     { name: "app-store" }
   )
