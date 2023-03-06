@@ -13,11 +13,10 @@ interface Account {
 type AccountKeys = Exclude<keyof Account, "id">;
 type AccountInput = Pick<Account, AccountKeys>;
 
-
 interface BankStore {
   accounts: Account[];
   deleteAccount?: (byId: number) => void;
-  createAccount: (account: AccountInput) => void;
+  createAccount: (account: AccountInput) => number;
   deposit?: (byId: number, amount: number) => void;
   withdraw?: (byId: number, amount: number) => void;
 }
@@ -27,17 +26,22 @@ const useBankStore = create<BankStore>()(
     (set) => ({
       accounts: [],
       createAccount: (account: AccountInput) => {
-        set((state) => ({
-          accounts: [
-            ...state.accounts,
-            {
-              id: state.accounts.length + 1,
-              balance: account.balance,
-              name: account.name,
-              type: account.type,
-            },
-          ],
-        }));
+        let id = 0;
+        set((state) => {
+          id = state.accounts.length + 1;
+          return {
+            accounts: [
+              ...state.accounts,
+              {
+                id,
+                balance: account.balance,
+                name: account.name,
+                type: account.type,
+              },
+            ],
+          };
+        });
+        return id;
       },
     }),
     { name: "bank-store" }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import useBankStore from '../zustand/bankStore';
+import useAppStore from "../zustand/appStore";
+import useBankStore from "../zustand/bankStore";
 import AccountTypeSelection, { accountTypes } from "./AccountTypeSelection";
 
 interface FormError {
@@ -15,6 +16,7 @@ const initialFormErrors = {
 
 const NewAccountContainer = () => {
   const { createAccount } = useBankStore();
+  const { setMode, setCurrentlySelectedAccount } = useAppStore();
 
   const [formState, setFormState] = useState({
     accountName: "New Account",
@@ -47,12 +49,14 @@ const NewAccountContainer = () => {
     }
 
     if (formValidated) {
-      createAccount({
+      const newAccountCreated = createAccount({
         name: formState.accountName,
         type: formState.accountType.type,
         balance: Number(formState.accountStartingBalance),
       });
       toast.success("New account created");
+      setMode("account");
+      setCurrentlySelectedAccount(newAccountCreated);
     } else {
       toast.error("Unable to to create new account");
     }

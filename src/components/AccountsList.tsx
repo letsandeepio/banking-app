@@ -1,11 +1,10 @@
-import useAppStore from '../zustand/appStore';
-import useBankStore from '../zustand/bankStore';
+import useAppStore from "../zustand/appStore";
+import useBankStore from "../zustand/bankStore";
 import AddNewAccountPlaceholder from "./AddNewAccountPlaceholder";
 
-
 const AccountsList = () => {
-
   const accounts = useBankStore((state) => state.accounts);
+  const { setCurrentlySelectedAccount } = useAppStore();
 
   return (
     <ul
@@ -16,6 +15,7 @@ const AccountsList = () => {
         <li
           key={account.id}
           className='relative bg-white py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50 '
+          onClick={() => setCurrentlySelectedAccount(account.id)}
         >
           <div className='flex justify-between space-x-3'>
             <div className='min-w-0 flex-1'>
