@@ -3,21 +3,26 @@ import { persist } from "zustand/middleware";
 
 
 type Mode = 'new' | 'account';
+type TransactionMode = 'withdraw' | 'deposit';
 
 interface AppStore {
   currentlySelectedAccount?: string;
   viewMode: Mode;
+  transactionMode?: TransactionMode;
   setMode: (newMode: Mode) => void;
+  setTransactionMode: (newMode: TransactionMode) => void;
   setCurrentlySelectedAccount: (newlySelectedAccount?: string) => void;
 }
 
 const useAppStore = create<AppStore>()(
   persist(
     (set) => ({
-      setMode: (mode: Mode) => set((state) => ({ viewMode: mode })),
+      setMode: (newMode: Mode) => set((state) => ({ viewMode: newMode })),
+      setTransactionMode: (newMode: TransactionMode) =>
+        set((state) => ({ transactionMode: newMode })),
       setCurrentlySelectedAccount: (newlySelectedAccount?: string) =>
         set((state) => ({ currentlySelectedAccount: newlySelectedAccount })),
-      viewMode: 'account',
+      viewMode: "account",
     }),
     { name: "app-store" }
   )
