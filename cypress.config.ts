@@ -2,7 +2,6 @@ import { defineConfig } from "cypress";
 
 import task from "@cypress/code-coverage/task";
 
-console.log(task);
 
 export default defineConfig({
   env: {

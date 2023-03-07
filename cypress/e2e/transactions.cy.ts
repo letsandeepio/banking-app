@@ -18,6 +18,18 @@ describe("transactions", () => {
     cy.get('[data-cy="accountBalance"]').should("have.text", "$1100");
   });
 
+  it("shouldn't allow the user to deposit zero or less than 0 amount to bank account", () => {
+    cy.get('[data-cy="deposit"]').click();
+    cy.get("#amount").clear().type("-10");
+
+    cy.get('[data-cy="submitDeposit"]').click();
+
+    cy.get("#amount-error").should(
+      "have.text",
+      "Deposit amount must be greater than 0."
+    );
+  });
+
   it("should allow user to withdraw from bank account", () => {
     cy.get('[data-cy="withdraw"]').click();
     cy.get("#amount").clear().type("100");
@@ -25,6 +37,18 @@ describe("transactions", () => {
     cy.get('[data-cy="submitWithdraw"]').click();
 
     cy.get('[data-cy="accountBalance"]').should("have.text", "$900");
+  });
+
+  it("shouldn't  allow user to withdraw zero or less than 0 amount from bank account", () => {
+    cy.get('[data-cy="withdraw"]').click();
+    cy.get("#amount").clear().type("0");
+
+    cy.get('[data-cy="submitWithdraw"]').click();
+
+    cy.get("#amount-error").should(
+      "have.text",
+      "Withdrawal amount must be greater than 0."
+    );
   });
 
   it("shouldn't allow the user to deposit more than $10000 into bank account in single transaction", () => {
@@ -39,7 +63,7 @@ describe("transactions", () => {
     );
   });
 
-  it("should'nt allow the user to withdraw from bank account if balance is less than $100", () => {
+  it("shouldn't  allow the user to withdraw from bank account if balance is less than $100", () => {
     cy.get('[data-cy="withdraw"]').click();
     cy.get("#amount").clear().type("900");
 
@@ -58,7 +82,7 @@ describe("transactions", () => {
     );
   });
 
-  it("should'nt allow the user to withdraw from 90% of their available balance", () => {
+  it("shouldn't  allow the user to withdraw from 90% of their available balance", () => {
     // Deposit $9000 into the bank account, total will be $10000
     cy.get('[data-cy="deposit"]').click();
     cy.get("#amount").clear().type("9000");

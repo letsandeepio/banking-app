@@ -31,10 +31,6 @@ const WithdrawalContainer = ({ onSubmit }: WithdrawalContainerProps) => {
 
     setError(undefined);
 
-    // console.log("Amount to withdraw", amount)
-    // console.log("Account balance", account?.balance);
-    // console.log("New Balance" , newBalance);
-
     if (parsedAmount <= 0) {
       setError("Withdrawal amount must be greater than 0.");
       return;
