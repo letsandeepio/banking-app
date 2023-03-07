@@ -60,11 +60,10 @@ const useBankStore = create<BankStore>()(
               ? account.balance + amount
               : account.balance - amount;
 
-          const updatedAccounts = [
-            ...state.accounts.slice(0, accountIndex),
-            { ...account, balance: newBalance },
-            ...state.accounts.slice(accountIndex + 1),
-          ] as Account[];
+          const updatedAccount = { ...account, balance: newBalance };
+          const updatedAccounts = [...state.accounts];
+
+          updatedAccounts[accountIndex] = updatedAccount;
 
           return {
             ...state,

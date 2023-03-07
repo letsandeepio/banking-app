@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 export const createTestAccount1 = (balance: string) => {
   cy.get('[data-cy="newAccountSideBar"]').click();
   cy.contains("Account Information");
@@ -6,8 +8,6 @@ export const createTestAccount1 = (balance: string) => {
   cy.get("#starting-balance").clear().type(balance);
 
   cy.get('[data-cy="createAccount"]').click();
-
-
 };
 
 export const createTestAccount2 = (balance: string) => {
@@ -18,5 +18,4 @@ export const createTestAccount2 = (balance: string) => {
   cy.get("#starting-balance").clear().type(balance);
 
   cy.get('[data-cy="createAccount"]').click();
-
 };

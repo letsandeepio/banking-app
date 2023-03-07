@@ -14,10 +14,7 @@ const AccountView = () => {
     currentlySelectedAccount,
     setCurrentlySelectedAccount,
   } = useAppStore();
-
-  const { deleteAccount } = useBankStore();
-  
-  const accounts = useBankStore((state) => state.accounts);
+  const { deleteAccount, accounts } = useBankStore();
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -43,13 +40,6 @@ const AccountView = () => {
           Please select a account on the right to view account information.
         </div>
       )}
-
-      {viewMode === "new" && (
-        <div className='p-4 flex flex-col gap-2'>
-          <NewAccountContainer />
-        </div>
-      )}
-
       {viewMode === "account" && (
         <>
           <div className='pb-4 pr-4 w-full flex justify-end gap-2'>
@@ -58,7 +48,7 @@ const AccountView = () => {
                 type='button'
                 className='inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                 onClick={() => setMode("new")}
-                data-cy="newAccount"
+                data-cy='newAccount'
               >
                 <PlusIcon
                   className='-ml-0.5 mr-1.5 h-5 w-5'
@@ -72,7 +62,7 @@ const AccountView = () => {
                 type='button'
                 className='rounded-md bg-red-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 hover:border-red-500 focus-visible:outline focus-visible:outline-red-600'
                 onClick={() => setDeleteModalOpen(true)}
-                data-cy="deleteAccount"
+                data-cy='deleteAccount'
               >
                 Delete
               </button>
@@ -85,6 +75,11 @@ const AccountView = () => {
             onDelete={deleteHandler}
           />
         </>
+      )}
+      {viewMode === "new" && (
+        <div className='p-4 flex flex-col gap-2'>
+          <NewAccountContainer />
+        </div>
       )}
     </div>
   );

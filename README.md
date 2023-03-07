@@ -1,7 +1,10 @@
 # Basic Banking App
 
+![App Home Screen](screenshots/app-home-screen.png)
 
+## Live Deployment
 
+App is currently deployed at: https://banking-app-pink.vercel.app/
 
 ## Basic Bank system requirements
 
@@ -28,6 +31,7 @@
 ## Additional Features
 
 - User is able to create two types of accounts -> Checking & Saving
+- User data is presisted across sessions in the LocalStorage
 - User is able to search through the bank accounts by name or type of account
 - Simple notifications are provided to the user to let them know of a successful withdrawal or deposit 
 
@@ -56,5 +60,6 @@ yarn cy:run-e2e
 
 Code coverage will be generated upon each e2e test run, and can be viewed at `coverage/Icov-report/index.html`
 
-Current Code Coverage stands at 93.43%
+Latest Code Coverage Report
 
+![App Home Screen](screenshots/code-coverage.png)
